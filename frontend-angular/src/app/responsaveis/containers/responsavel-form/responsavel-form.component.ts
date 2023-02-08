@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { ResponsaveisService } from './../services/responsaveis.service';
+import { ResponsaveisService } from '../../services/responsaveis.service';
 
 @Component({
   selector: 'app-responsavel-form',

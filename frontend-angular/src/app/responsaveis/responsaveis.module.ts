@@ -5,9 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AppMaterialModule } from './../shared/app-material/app-material.module';
 import { ResponsaveisRoutingModule } from './responsaveis-routing.module';
-import { ResponsaveisComponent } from './responsaveis/responsaveis.component';
-import { ResponsavelFormComponent } from './responsavel-form/responsavel-form.component';
-import { ResponsavelListComponent } from './responsavel-list/responsavel-list.component';
+import { ResponsaveisComponent } from './containers/responsaveis/responsaveis.component';
+import { ResponsavelFormComponent } from './containers/responsavel-form/responsavel-form.component';
+import { ResponsavelListComponent } from './components/responsavel-list/responsavel-list.component';
 
 @NgModule({
   declarations: [

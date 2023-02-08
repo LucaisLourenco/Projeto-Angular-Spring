@@ -3,9 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 
-import { Responsavel } from '../model/responsavel';
-import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
-import { ResponsaveisService } from './../services/responsaveis.service';
+import { Responsavel } from '../../model/responsavel';
+import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
+import { ResponsaveisService } from '../../services/responsaveis.service';
 
 @Component({
   selector: 'app-responsaveis',

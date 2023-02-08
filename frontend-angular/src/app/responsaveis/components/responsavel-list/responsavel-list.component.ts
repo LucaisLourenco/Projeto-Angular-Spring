@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Responsavel } from '../model/responsavel';
+import { Responsavel } from '../../model/responsavel';
 
 @Component({
   selector: 'app-responsavel-list',
@@ -10,17 +10,11 @@ import { Responsavel } from '../model/responsavel';
 export class ResponsavelListComponent {
 
   @Input() responsaveis: Responsavel[] = [];
+  @Output() add = new EventEmitter(false);
 
   readonly displayedColumns = ['id', 'nome', 'email', 'cpf', 'actions'];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
-
-  }
-
   onAdd() {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.add.emit(true);
   }
 }
