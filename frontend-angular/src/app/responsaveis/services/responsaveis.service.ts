@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, first, tap } from 'rxjs';
+import { first } from 'rxjs';
 
 import { Responsavel } from '../model/responsavel';
 
@@ -9,7 +9,7 @@ import { Responsavel } from '../model/responsavel';
 })
 export class ResponsaveisService {
 
-  private readonly API = '/assets/responsaveis.json';
+  private readonly API = 'api/responsaveis';
 
   constructor(private http: HttpClient) { }
 
@@ -20,4 +20,9 @@ export class ResponsaveisService {
       //tap(responsaveis => console.log(responsaveis))
     );
   }
+
+  save(responsavel: Partial<Responsavel>) {
+    return this.http.post<Responsavel>(this.API, responsavel).pipe(first());
+  }
+
 }

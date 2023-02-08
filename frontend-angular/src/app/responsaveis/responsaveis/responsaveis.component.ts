@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 
 import { Responsavel } from '../model/responsavel';
@@ -14,11 +15,13 @@ import { ResponsaveisService } from './../services/responsaveis.service';
 export class ResponsaveisComponent {
 
   responsaveis$: Observable<Responsavel[]>;
-  displayedColumns = ['id', 'nome', 'email', 'cpf'];
+  displayedColumns = ['id', 'nome', 'email', 'cpf', 'actions'];
 
   constructor(
     private responsaveisService: ResponsaveisService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
 
     this.responsaveis$ = this.responsaveisService.list().pipe(
@@ -35,4 +38,9 @@ export class ResponsaveisComponent {
       data: errorMsg
     });
   }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
 }
