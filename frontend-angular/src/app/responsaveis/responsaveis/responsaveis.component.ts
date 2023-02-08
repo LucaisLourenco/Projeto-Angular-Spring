@@ -15,7 +15,6 @@ import { ResponsaveisService } from './../services/responsaveis.service';
 export class ResponsaveisComponent {
 
   responsaveis$: Observable<Responsavel[]>;
-  displayedColumns = ['id', 'nome', 'email', 'cpf', 'actions'];
 
   constructor(
     private responsaveisService: ResponsaveisService,

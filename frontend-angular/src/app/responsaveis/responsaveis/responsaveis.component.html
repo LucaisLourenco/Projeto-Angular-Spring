@@ -2,60 +2,15 @@
   <mat-card-content>
     <mat-toolbar color="primary">Lista de pais ou responsáveis</mat-toolbar>
 
-    <div class="example-container mat-elevation-z8">
+    <div class="column-flex mat-elevation-z8">
+      <app-responsavel-list *ngIf="responsaveis$ | async as responsaveis; else: loading_spinner"
+        [responsaveis]="responsaveis"></app-responsavel-list>
 
-      <div *ngIf="responsaveis$ | async as responsaveis; else: loading_spinner">
-
-        <table mat-table [dataSource]="responsaveis" class="mat-elevation-z8">
-
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="nome">
-            <th mat-header-cell *matHeaderCellDef> Nome </th>
-            <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> E-mail </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="cpf">
-            <th mat-header-cell *matHeaderCellDef> CPF </th>
-            <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef>
-              <button mat-icon-button color="primary" aria-label="Adicionar um responsável" (click)="onAdd()">
-                <mat-icon>add</mat-icon>
-              </button>
-            </mat-header-cell>
-
-            <mat-cell *matCellDef="let element">
-              <button mat-icon-button color="primary" aria-label="Editar responsável">
-                <mat-icon>edit</mat-icon>
-              </button>
-
-              <button mat-icon-button color="primary" aria-label="Deletar responsável">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-cell>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
+      <ng-template #loading_spinner>
+        <div class="loading-spinner">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
     </div>
-
-    <ng-template #loading_spinner>
-      <div class="loading-spinner">
-        <mat-spinner></mat-spinner>
-      </div>
-    </ng-template>
   </mat-card-content>
 </mat-card>
