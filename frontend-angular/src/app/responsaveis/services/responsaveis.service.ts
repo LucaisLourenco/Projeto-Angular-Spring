@@ -25,4 +25,8 @@ export class ResponsaveisService {
     return this.http.post<Responsavel>(this.API, responsavel).pipe(first());
   }
 
+  loadById(id: string) {
+    return this.http.get<Responsavel>(`${this.API}/${id}`);
+  }
+
 }

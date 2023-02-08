@@ -39,7 +39,11 @@ export class ResponsaveisComponent {
   }
 
   onAdd() {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.router.navigate(['create'], {relativeTo: this.route});
+  }
+
+  onEdit(responsavel: Responsavel) {
+    this.router.navigate(['edit', responsavel.id], {relativeTo: this.route});
   }
 
 }

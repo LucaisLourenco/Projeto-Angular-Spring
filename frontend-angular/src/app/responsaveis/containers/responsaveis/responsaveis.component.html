@@ -4,7 +4,7 @@
 
     <div class="column-flex mat-elevation-z8">
       <app-responsavel-list *ngIf="responsaveis$ | async as responsaveis; else: loading_spinner"
-        [responsaveis]="responsaveis" (add)="onAdd()"></app-responsavel-list>
+        [responsaveis]="responsaveis" (add)="onAdd()" (edit)="onEdit($event)"></app-responsavel-list>
 
       <ng-template #loading_spinner>
         <div class="loading-spinner">
