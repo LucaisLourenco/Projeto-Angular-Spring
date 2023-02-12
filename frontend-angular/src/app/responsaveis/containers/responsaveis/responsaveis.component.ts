@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
 import { Responsavel } from '../../model/responsavel';
@@ -52,17 +53,26 @@ export class ResponsaveisComponent {
   }
 
   onDelete(responsavel: Responsavel) {
-    this.responsaveisService.delete(responsavel.id).subscribe(
-      () => {
-        this.refresh();
-        this.snackBar.open('Resposável removido com sucesso.', 'x', {
-          duration: 5000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
-        });
-      },
-      error => this.onError('Ouve um erro ao remover o responsável.')
-    )
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Deseja remover este responsável?',
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.responsaveisService.delete(responsavel.id).subscribe(
+          () => {
+            this.refresh();
+            this.snackBar.open('Resposável removido com sucesso.', 'x', {
+              duration: 5000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+            });
+          },
+          error => this.onError('Ouve um erro ao remover o responsável.')
+        )
+      }
+    });
   }
 
 }
