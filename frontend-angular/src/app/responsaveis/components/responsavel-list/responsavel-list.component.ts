@@ -12,8 +12,9 @@ export class ResponsavelListComponent {
   @Input() responsaveis: Responsavel[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
+  @Output() delete = new EventEmitter(false);
 
-  readonly displayedColumns = ['id', 'nome', 'email', 'cpf', 'actions'];
+  readonly displayedColumns = ['nome', 'email', 'cpf', 'actions'];
 
   onAdd() {
     this.add.emit(true);
@@ -21,5 +22,9 @@ export class ResponsavelListComponent {
 
   onEdit(responsavel: Responsavel) {
     this.edit.emit(responsavel);
+  }
+
+  onDelete(responsavel: Responsavel) {
+    this.delete.emit(responsavel);
   }
 }

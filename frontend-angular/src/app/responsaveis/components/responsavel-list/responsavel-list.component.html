@@ -1,10 +1,5 @@
 <mat-table [dataSource]="responsaveis" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-  </ng-container>
-
   <ng-container matColumnDef="nome">
     <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.nome}} </mat-cell>
@@ -32,7 +27,7 @@
         <mat-icon>edit</mat-icon>
       </button>
 
-      <button mat-icon-button color="primary" aria-label="Deletar responsável">
+      <button mat-icon-button color="primary" aria-label="Deletar responsável" (click)="onDelete(element)">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>

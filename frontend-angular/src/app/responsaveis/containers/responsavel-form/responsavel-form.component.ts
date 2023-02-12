@@ -1,7 +1,9 @@
+import { Responsavel } from './../../model/responsavel';
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 import { ResponsaveisService } from '../../services/responsaveis.service';
 
@@ -10,9 +12,10 @@ import { ResponsaveisService } from '../../services/responsaveis.service';
   templateUrl: './responsavel-form.component.html',
   styleUrls: ['./responsavel-form.component.scss']
 })
-export class ResponsavelFormComponent {
+export class ResponsavelFormComponent implements OnInit {
 
   form = this.formBuilder.group({
+    id: [''],
     nome: [''],
     email: [''],
     cpf: ['']
@@ -21,7 +24,17 @@ export class ResponsavelFormComponent {
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: ResponsaveisService,
     private snackBar: MatSnackBar,
-    private location: Location) {
+    private location: Location,
+    private route: ActivatedRoute) {
+  }
+  ngOnInit(): void {
+    const responsavel: Responsavel = this.route.snapshot.data['responsavel'];
+    this.form.setValue({
+      id: responsavel.id,
+      nome: responsavel.nome,
+      cpf: responsavel.cpf,
+      email: responsavel.email
+    });
   }
 
   onSubmit() {
@@ -33,7 +46,7 @@ export class ResponsavelFormComponent {
   }
 
   private onSuccess() {
-    this.snackBar.open('Curso salvo com sucesso.', '', { duration: 5000 });
+    this.snackBar.open('Responsável salvo com sucesso.', '', { duration: 5000 });
     this.location.back();
   }
 

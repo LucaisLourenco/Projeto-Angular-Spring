@@ -22,11 +22,27 @@ export class ResponsaveisService {
   }
 
   save(responsavel: Partial<Responsavel>) {
-    return this.http.post<Responsavel>(this.API, responsavel).pipe(first());
+    if (responsavel.id) {
+      return this.update(responsavel);
+    }
+
+    return this.store(responsavel);
   }
 
   loadById(id: string) {
     return this.http.get<Responsavel>(`${this.API}/${id}`);
+  }
+
+  private store(responsavel: Partial<Responsavel>) {
+    return this.http.post<Responsavel>(this.API, responsavel).pipe(first());
+  }
+
+  private update(responsavel: Partial<Responsavel>) {
+    return this.http.put<Responsavel>(`${this.API}/${responsavel.id}`, responsavel).pipe(first());
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${this.API}/${id}`).pipe(first());
   }
 
 }
