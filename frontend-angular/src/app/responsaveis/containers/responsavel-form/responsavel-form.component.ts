@@ -1,7 +1,7 @@
 import { Responsavel } from './../../model/responsavel';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,9 +16,9 @@ export class ResponsavelFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     id: [''],
-    nome: [''],
-    email: [''],
-    cpf: ['']
+    nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+    email: ['', [Validators.required, Validators.email]],
+    cpf: ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]]
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -53,4 +53,5 @@ export class ResponsavelFormComponent implements OnInit {
   private onError() {
     this.snackBar.open('Erro ao salvar responsável.', '', { duration: 5000 });
   }
+
 }
